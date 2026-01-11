@@ -159,8 +159,8 @@ jobs:
 
     - name: Building recovery
       run: |
-        source build/envsetup.sh
         export ALLOW_MISSING_DEPENDENCIES=true
+        git clone https://android.googlesource.com/platform/external/guava external/guava
         lunch ${{ github.event.inputs.MAKEFILE_NAME }}-${{ github.event.inputs.RELEASE_NAME }}-eng && make clean && make ${{ github.event.inputs.BUILD_TARGET }}image -j$(nproc --all)
       working-directory: ${{ steps.pwd.outputs.workspace-folder }}
 
